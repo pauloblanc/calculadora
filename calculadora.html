@@ -21,40 +21,82 @@
 <div class="caixa-numero resultado">
 	resultado: <span id="resultado"></span>
 </div>
-<button onclick="Somar()" class="botao">somar</button>
-	<button onclick="Subtrair()" class="botao">Subtrair</button>
-	<button onclick="Multiplicar()" class="botao">Multiplicar</button>
-    <button onclick="Dividir()" class="botao">Dividir</button>
-	
+
+<button class="botao" id="somar">somar</button>
+	<button  class="botao" id="Subtrair">Subtrair</button>
+	<button  class="botao" id="Multiplicar">Multiplicar</button>
+    <button  class="botao" id="Dividir">Dividir</button>
+	<button  class="botao" id="Limpar">Limpar</button>
+
 </body>
 <script type="text/javascript">
 	var n1 = document.querySelector('#n1')
 	var n2 = document.querySelector('#n2')
     var tag_resultado = document.querySelector('#resultado')
-    var resultado = 0
-	
-	function Somar(){
-		var resultado = parseInt(n1.value) + parseInt(n2.value)
-		tag_resultado.textContent = resultado
-		return false
-		
-	}
-	function Subtrair(){
-		var resultado = parseInt(n1.value) - parseInt(n2.value)
-		tag_resultado.textContent = resultado
-		return false
-	}
-	function Multiplicar(){
-		var resultado = parseInt(n1.value) * parseInt(n2.value)
-		tag_resultado.textContent = resultado
-		return false
-	}
-	function Dividir(){
-		var resultado = parseInt(n1.value) / parseInt(n2.value)
-		tag_resultado.textContent = resultado
-		return false
-	}
+   
+   document.querySelectorAll('input').forEach(
+function (input_html) {
+	input_html.addEventListener('mousemove', function(evento) {
+evento.target.style.border = '1px solid red'
+	})
+	input_html.addEventListener('mouseleave', function(evento) {
+evento.target.style.border = '1px solid #eee'
+})
+input_html.addEventListener('blur', function(evento) {
+	var entrada_usuario = parseInt(evento.target.value) 
 
+	if (isNaN (entrada_usuario) || !isFinite(entrada_usuario)) {
+		evento.target.value = ''
+	}
+})
+})
+
+	
+document.querySelector('#Limpar').addEventListener('click', function (){
+	n1.value = ''
+	n2.value = ''
+	tag_resultado.textContent = ''
+})	
+document.querySelector('#Dividir').addEventListener('mousemove',function() {
+	var resultado = parseInt(n1.value) / parseInt(n2.value)
+	if(isNaN(resultado) || !isFinite(resultado)){
+	alert('ta bugado ?')
+	return
+}
+tag_resultado.textContent = resultado
+})
+
+
+document.querySelector('#somar').addEventListener('click', function(){
+	var resultado = parseInt(n1.value) + parseInt(n2.value)
+		if (isNaN (resultado) || !isFinite(resultado)) {
+		alert('ta bugado ?')
+		return
+	}
+		tag_resultado.textContent = resultado
+		
+})
+
+
+
+	document.querySelector('#Subtrair').addEventListener('click', function(){
+		var resultado = parseInt(n1.value) - parseInt(n2.value)
+		if (isNaN (resultado) || !isFinite(resultado)) {
+		alert('ta bugado ?')
+		return
+	}
+		tag_resultado.textContent = resultado
+	})
+	
+
+document.querySelector('#Multiplicar').addEventListener('click', function(){
+	var resultado = parseInt(n1.value) * parseInt(n2.value)
+		if (isNaN (resultado) || !isFinite(resultado)) {
+		alert('ta bugado ?')
+		return
+	}
+		tag_resultado.textContent = resultado
+})
 
 </script>
-</html># calculadora
+</html>
